@@ -12,23 +12,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar( title: Text('테스트중입니다')),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, //가로축정렬
-          // crossAxisAlignment: CrossAxisAlignment.center,  //세로축정렬
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: Container( //SizedBox 를 써도 좋다
-            height: 70,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.phone),
-                Icon(Icons.message),
-                Icon(Icons.contact_page)
-             ],
-            ),
-          )
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: 50,
+            height: 50,
 
+            // 테두리 옵션
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              border: Border.all(color: Colors.black)
+            ),
+            
+            // 마진, 패딩 옵션
+            margin: EdgeInsets.all(20),
+              // margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            padding: EdgeInsets.all(10),
+
+            // 텍스트박스 옵션
+            child: Text( 'test')
+          ),
         ),
       )
     );
