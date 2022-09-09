@@ -6,38 +6,64 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar( title: Text('테스트중입니다')),
-        body: Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            width: 50,
-            height: 50,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('테스트중입니다'),
+            leading: Icon(Icons.circle),
 
-            // 테두리 옵션
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              border: Border.all(color: Colors.black)
-            ),
-            
-            // 마진, 패딩 옵션
-            margin: EdgeInsets.all(20),
-              // margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-            padding: EdgeInsets.all(10),
-
-            // 텍스트박스 옵션
-            child: Text( 'test')
           ),
-        ),
-      )
+          body: SizedBox(
+
+            
+            // child: TextButton(
+            //   child: Text('버튼이다'),
+            //   onPressed: (){},
+            // ),
+            
+            // child: Text('하이',
+            //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: Colors.amber)),
+
+          ),
+        )
     );
 
   }
 }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar( title: Text('테스트중입니다')),
+//         body: Align(
+//           alignment: Alignment.topCenter,
+//           child: Container(
+//             width: 50,
+//             height: 50,
+//
+//             // 테두리 옵션
+//             decoration: BoxDecoration(
+//               color: Colors.blue,
+//               border: Border.all(color: Colors.black)
+//             ),
+//
+//             // 마진, 패딩 옵션
+//             margin: EdgeInsets.all(20),
+//               // margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+//             padding: EdgeInsets.all(10),
+//
+//             // 텍스트박스 옵션
+//             child: Text( 'test')
+//           ),
+//         ),
+//       )
+//     );
+//
+//   }
+// }
 
 //
 // class MyApp extends StatelessWidget {
