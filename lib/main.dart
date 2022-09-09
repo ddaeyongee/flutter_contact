@@ -10,12 +10,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Text('안녕')
-      // home: Icon(Icons.star)
-      // home: Image.asset('selfy.jpg')
-      // home: Container( width: 50, height: 50, color: Colors.blue )
-      home: Center(
-        child: Container( width: 50, height: 50, color: Colors.blue ),
+      home: Scaffold(
+        appBar: AppBar( title: Text('테스트중입니다')),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, //가로축정렬
+          // crossAxisAlignment: CrossAxisAlignment.center,  //세로축정렬
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: Container( //SizedBox 를 써도 좋다
+            height: 70,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(Icons.phone),
+                Icon(Icons.message),
+                Icon(Icons.contact_page)
+             ],
+            ),
+          )
+
+        ),
       )
     );
 
