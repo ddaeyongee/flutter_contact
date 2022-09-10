@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           showDialog(
               context: context,
               builder: (context) {
-                return Dialog(child: Text('안녕'));
+                return DialogUI();
               });
         },
       ),
@@ -56,11 +56,26 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
+class DialogUI extends StatelessWidget {
+  const DialogUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Dialog(
+      child: Container(
+        width: 300,
+        height: 300,
+        child: Column(
+          children: [
+            TextField(),
+            TextButton( child: Text('완료'), onPressed:(){} ),
+            TextButton(
+                child: Text('취소'),
+                onPressed:(){ Navigator.pop(context); })
+          ],
+        ),
+      ),
+    );
   }
 }
+
