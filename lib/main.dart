@@ -15,7 +15,11 @@ class MyApp extends StatelessWidget {
             leading: Icon(Icons.circle),
 
           ),
-          body: SizedBox(
+          body: Row(
+            children: [
+              Flexible(child: Container(color: Colors.blue,), flex: 3),
+              Flexible(child: Container(color: Colors.green,), flex: 7),
+            ],
 
             
             // child: TextButton(
