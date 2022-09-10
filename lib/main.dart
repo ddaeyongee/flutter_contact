@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
           print(i);
           return ListTile(
             // leading: Text(like[i].toString()),
-            leading: Image.asset('selfy.jpg'),
+            leading: Image.asset('assets/selfy.jpg'),
             title: Text(name[i]),
             // trailing: ElevatedButton(
             //   child: Text('좋아요'),
@@ -86,7 +87,7 @@ class DialogUI extends StatelessWidget {
         child: Column(
           children: [
             TextField(controller: inputData,),
-            TextButton( child: Text('완료'), onPressed:(){
+            TextButton( child: Text('완 료'), onPressed:(){
               addOne();
               addName(inputData.text);
             } ),
