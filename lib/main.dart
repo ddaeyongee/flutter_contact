@@ -16,20 +16,26 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  var a = 3;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
+  var total = 3;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
   var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
   var like = [0, 0, 0];
+
+  addOne(){ //dart 함수 선언
+    setState(() {
+      total++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Text(a.toString()),
+        child: Text(total.toString()),
         onPressed: () {
           showDialog(
               context: context,
               builder: (context) {
-                return DialogUI(state: a); //작명 : 보낼 state
+                return DialogUI(addOne : addOne ); //작명 : 보낼 state
               });
         },
       ),
@@ -57,19 +63,23 @@ class _MyAppState extends State<MyApp> {
 }
 
 class DialogUI extends StatelessWidget {
-  const DialogUI({Key? key, this.state }) : super(key: key);
-  final state;  //부모가 보낸 state는 read-only 가 좋다
-  
+  DialogUI({Key? key, this.addOne }) : super(key: key);
+  final addOne;  //부모가 보낸 state는 read-only 가 좋다
+  var inputData = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
+        padding: EdgeInsets.all(20),
         width: 300,
         height: 300,
         child: Column(
           children: [
-            TextField(),
-            TextButton( child: Text(state.toString()), onPressed:(){} ),
+            TextField(controller: inputData),
+            TextButton( child: Text('완료'), onPressed:(){
+              addOne();
+            } ),
             TextButton(
                 child: Text('취소'),
                 onPressed:(){ Navigator.pop(context); })
