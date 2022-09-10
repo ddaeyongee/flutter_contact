@@ -17,6 +17,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  // contact app 접근 권한을 얻는 함수를 작성 
+  getPermission() async {
+    var status = await Permission.contacts.status;  //연락처 권한줬는지 여부
+    if (status.isGranted) {
+      print('허락됨');
+    } else if (status.isDenied) {
+      print('거절됨');
+      Permission.contacts.request(); //허락해달라고 팝업띄우는 코드
+      openAppSettings();  // 앱설정 화면 띄워 줌
+    }
+  }
+
+  @override
+  void initState() {    //이 widget이 처음 load 될 때
+    super.initState();
+    getPermission();
+  }
+
+
   var total = 100;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
   var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
   var like = [0, 0, 0];
@@ -47,7 +66,9 @@ class _MyAppState extends State<MyApp> {
               });
         },
       ),
-      appBar: AppBar(title: Text('테스트페이지 appBar'), leading: Icon(Icons.star)),
+      appBar: AppBar(title: Text('연락처 어플리케이션'), actions: [
+        IconButton(onPressed: (){ getPermission(); }, icon: Icon(Icons.contacts))
+      ],),
       body: ListView.builder(
         itemCount: name.length,
         itemBuilder: (c, i) {
