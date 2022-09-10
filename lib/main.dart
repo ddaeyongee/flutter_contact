@@ -12,14 +12,38 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(
             title: Text('테스트중입니다'),
-            leading: Icon(Icons.circle),
+            leading: Icon(Icons.star),
 
           ),
-          body: Row(
-            children: [
-              Flexible(child: Container(color: Colors.blue,), flex: 3),
-              Flexible(child: Container(color: Colors.green,), flex: 7),
-            ],
+          body: Container(
+            height: 150,
+            padding: EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Image.asset('selfy.jpg', width: 150,),
+                Container(
+                  width: 300,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('태용입니다'),
+                      Text('살랑프로젝트'),
+                      Text('33'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(Icons.favorite),
+                          Text('4'),
+                        ],
+                      )
+
+                    ],
+                  )
+                )
+              ],
+            ),
+
+
 
             
             // child: TextButton(
