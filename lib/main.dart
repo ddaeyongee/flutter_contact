@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());  // const 는 상수 선언이기 때문에 굳이 필요 없음
+  runApp(
+      MaterialApp(
+       home: MyApp()
+      ));  // const 는 상수 선언이기 때문에 굳이 필요 없음
 }
 
 class MyApp extends StatefulWidget {
@@ -19,38 +22,45 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            child: Text(a.toString()),
-            onPressed: (){
-              print(a);
-              setState(() { // re-rendering 하면서 a 를 하나씩 증가시킴
-                a++;
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Text(a.toString()),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return Dialog(child: Text('안녕'));
               });
-            },
-          ),
-          appBar: AppBar(
-            title: Text('테스트페이지 appBar'),
-            leading: Icon(Icons.star)
-          ),
-          body: ListView.builder(
-            itemCount: 3,
-            itemBuilder: (c, i){
-              print(i);
-              return ListTile(
-                leading: Text(like[i].toString()),
-                title: Text(name[i]),
-                trailing: ElevatedButton(child: Text('좋아요'), onPressed: () {
-                  setState(() {
-                    like[i]++;
-                  });
-                },),
-              );
-            },
-          ),
-        )
+        },
+      ),
+      appBar: AppBar(title: Text('테스트페이지 appBar'), leading: Icon(Icons.star)),
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (c, i) {
+          print(i);
+          return ListTile(
+            leading: Text(like[i].toString()),
+            title: Text(name[i]),
+            trailing: ElevatedButton(
+              child: Text('좋아요'),
+              onPressed: () {
+                setState(() {
+                  like[i]++;
+                });
+              },
+            ),
+          );
+        },
+      ),
     );
+  }
+}
 
+class Test extends StatelessWidget {
+  const Test({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
