@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 void main() {
   runApp(
@@ -22,6 +23,10 @@ class _MyAppState extends State<MyApp> {
     var status = await Permission.contacts.status;  //연락처 권한줬는지 여부
     if (status.isGranted) {
       print('허락됨');
+      var contacts = await ContactsService.getContacts(withThumbnails: false);
+      // print(contacts);
+      print(contacts[0].givenName);
+
     } else if (status.isDenied) {
       print('거절됨');
       Permission.contacts.request(); //허락해달라고 팝업띄우는 코드
@@ -35,10 +40,11 @@ class _MyAppState extends State<MyApp> {
     getPermission();
   }
 
-
   var total = 100;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
   var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
   var like = [0, 0, 0];
+
+  List<Contact> name2 = [];
 
   addOne(){
     setState(() {
@@ -109,8 +115,14 @@ class DialogUI extends StatelessWidget {
           children: [
             TextField(controller: inputData,),
             TextButton( child: Text('완 료'), onPressed:(){
-              addOne();
-              addName(inputData.text);
+              // addOne();
+              // addName(inputData.text);
+
+              var newContact = Contact();
+              newContact.givenName = inputData.text;  //새로운 연락처 만들기
+              ContactsService.addContact(newContact);  //실제로 연락처에 집어넣기
+              addName(newContact);   //심심해서 name이라는 state에도 저장해줌
+
             } ),
             TextButton(
                 child: Text('취소'),
