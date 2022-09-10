@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  var a = 1;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
+  var a = 3;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
   var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
   var like = [0, 0, 0];
 
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           showDialog(
               context: context,
               builder: (context) {
-                return DialogUI();
+                return DialogUI(state: a); //작명 : 보낼 state
               });
         },
       ),
@@ -57,8 +57,9 @@ class _MyAppState extends State<MyApp> {
 }
 
 class DialogUI extends StatelessWidget {
-  const DialogUI({Key? key}) : super(key: key);
-
+  const DialogUI({Key? key, this.state }) : super(key: key);
+  final state;  //부모가 보낸 state는 read-only 가 좋다
+  
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -68,7 +69,7 @@ class DialogUI extends StatelessWidget {
         child: Column(
           children: [
             TextField(),
-            TextButton( child: Text('완료'), onPressed:(){} ),
+            TextButton( child: Text(state.toString()), onPressed:(){} ),
             TextButton(
                 child: Text('취소'),
                 onPressed:(){ Navigator.pop(context); })
@@ -78,4 +79,3 @@ class DialogUI extends StatelessWidget {
     );
   }
 }
-
