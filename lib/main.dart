@@ -41,10 +41,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   var total = 100;  // staful 안에 변수 선언하면 그게 바로 state 를 사용할 수 있는 상태
-  var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
+  // var name = ['강태용', '곽동진', '애나벨']; //title name을 stateful 하게 관리
+  List<Contact> name = [];
   var like = [0, 0, 0];
 
-  List<Contact> name2 = [];
+
 
   addOne(){
     setState(() {
@@ -81,8 +82,8 @@ class _MyAppState extends State<MyApp> {
           print(i);
           return ListTile(
             // leading: Text(like[i].toString()),
-            leading: Image.asset('assets/selfy.jpg'),
-            title: Text(name[i]),
+            leading: Image.asset('assets/selfy.jpg', width: 100,),
+            title: Text(name[i].givenName ?? '이름이 없습니다'),   // null check 문법
             // trailing: ElevatedButton(
             //   child: Text('좋아요'),
             //   onPressed: () {
@@ -122,7 +123,6 @@ class DialogUI extends StatelessWidget {
               newContact.givenName = inputData.text;  //새로운 연락처 만들기
               ContactsService.addContact(newContact);  //실제로 연락처에 집어넣기
               addName(newContact);   //심심해서 name이라는 state에도 저장해줌
-
             } ),
             TextButton(
                 child: Text('취소'),
